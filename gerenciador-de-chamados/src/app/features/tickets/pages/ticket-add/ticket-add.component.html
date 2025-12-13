@@ -3,7 +3,6 @@
   <form [formGroup]="ticketForm" (ngSubmit)="salvarChamado()">
     <div class="p-fluid p-formgrid grid">
 
-      <!-- Campo Título com Ícone -->
       <div class="field col-6 mt-4">
         <label for="titulo">Título*</label>
         <p-inputgroup>
@@ -12,13 +11,13 @@
         </p-inputgroup>
       </div>
 
-      <!-- Campo Categoria (Dropdown dentro do Input Group) -->
       <div class="field col-6 mt-4">
         <label for="categoria">Categoria</label>
         <p-inputgroup>
             <p-inputgroup-addon>
-                <i class="pi pi-tags"></i> <!-- Ícone para categoria -->
+                <i class="pi pi-tags"></i>
             </p-inputgroup-addon>
+
             <p-select 
               id="categoria" 
               formControlName="categoria" 
@@ -27,10 +26,10 @@
               optionValue="value"
               placeholder="Selecione uma categoria">
             </p-select>
+
         </p-inputgroup>
       </div>
 
-      <!-- Campo Descrição com Ícone -->
       <div class="field col-12">
         <label for="descricao">Descrição*</label>
         <p-inputgroup>
@@ -39,7 +38,6 @@
         </p-inputgroup>
       </div>
       
-      <!-- Botão de Salvar -->
       <div class="field col-12">
         <p-button 
           label="Salvar" 

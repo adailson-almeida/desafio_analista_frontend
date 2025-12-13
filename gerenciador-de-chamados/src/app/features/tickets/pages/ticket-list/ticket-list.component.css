@@ -1,0 +1,4 @@
+:host ::ng-deep .p-datatable-tbody > tr:nth-child(odd) > td {
+    background-color: rgba(52, 211, 153, 0.10) !important;
+    font-weight: 500 !important;
+}
