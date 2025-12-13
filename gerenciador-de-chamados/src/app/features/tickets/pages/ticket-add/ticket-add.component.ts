@@ -11,8 +11,10 @@ import {
   FormBuilder, 
   FormGroup, 
   Validators, 
-  ReactiveFormsModule // Importe este módulo
+  ReactiveFormsModule
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TicketService } from '../../services/ticket.service';
 
 @Component({
   selector: 'app-ticket-add',
@@ -38,7 +40,11 @@ export class TicketAddComponent implements OnInit {
   ticketForm!: FormGroup;
   categorias: any[] = [];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private ticketService: TicketService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.categorias = [
@@ -58,10 +64,10 @@ export class TicketAddComponent implements OnInit {
 
   salvarChamado() {
     if (this.ticketForm.valid) {
-      console.log('Chamado a ser salvo:', this.ticketForm.value);
-      alert('Chamado salvo com sucesso! (Verifique o console para os dados)');
-      // Lógica para enviar para o serviço/API (faremos isso mais tarde)
-      this.ticketForm.reset(); // Limpa o formulário após salvar
+      this.ticketService.addChamado(this.ticketForm.value).subscribe(response => {
+        this.router.navigate(['/tickets/list']);
+      })
+      
     } else {
       alert('Por favor, preencha todos os campos obrigatórios.');
     }
