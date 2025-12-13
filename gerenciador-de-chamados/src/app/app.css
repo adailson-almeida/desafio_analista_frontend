@@ -1,0 +1,25 @@
+.main-layout-container {
+  display: flex; /* Ativa o Flexbox para organizar os filhos (sidebar e main) lado a lado */
+  min-height: 100vh; /* Garante que o container ocupe a altura total da tela */
+}
+
+.sidebar-area {
+  /* Define uma largura fixa para o sidebar */
+  width: 350px; 
+  
+  /* Garante que o menu ocupe 100% da altura do sidebar */
+  height: 100%; 
+  padding: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-content-area {
+  /* O conteúdo principal ocupa o resto do espaço disponível (flex: 1) */
+  flex: 1; 
+  padding: 20px; /* Adiciona algum espaçamento ao redor do conteúdo */
+  overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+}
+
+:host ::ng-deep .p-panelmenu {
+    width: 100%;
+}

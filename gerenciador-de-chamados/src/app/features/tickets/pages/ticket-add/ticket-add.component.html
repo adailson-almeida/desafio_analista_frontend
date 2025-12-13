@@ -1,0 +1,19 @@
+<p-card header="Cadastrar Chamado">
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="titulo">Título do Chamado</label>
+      <!-- Usando ngModel para two-way binding básico -->
+      <input pInputText id="titulo" type="text" [(ngModel)]="tituloChamado" />
+    </div>
+    
+    <div class="p-field" style="margin-top: 15px;">
+
+      <p-button 
+        label="Salvar"
+        icon="pi pi-save" 
+        (onClick)="salvarChamado()">
+      </p-button>
+      
+    </div>
+  </div>
+</p-card>
