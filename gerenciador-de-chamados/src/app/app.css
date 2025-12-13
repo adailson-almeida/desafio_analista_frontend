@@ -23,3 +23,16 @@
 :host ::ng-deep .p-panelmenu {
     width: 100%;
 }
+
+:host ::ng-deep p-inputgroup-addon i {
+  color: #34d399; /* Use a cor que desejar, ex: Azul */
+}
+
+/* Se quiser cores diferentes para ícones específicos, use a classe do ícone */
+:host ::ng-deep .pi-bookmark {
+    color: #34d399; /* Laranja para o ícone de título */
+}
+
+:host ::ng-deep .pi-tags {
+    color: #34d399; /* Verde para o ícone de categoria */
+}

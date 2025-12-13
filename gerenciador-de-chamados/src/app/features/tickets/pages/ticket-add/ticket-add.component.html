@@ -1,19 +1,53 @@
-<p-card header="Cadastrar Chamado">
-  <div class="p-fluid">
-    <div class="p-field">
-      <label for="titulo">Título do Chamado</label>
-      <!-- Usando ngModel para two-way binding básico -->
-      <input pInputText id="titulo" type="text" [(ngModel)]="tituloChamado" />
-    </div>
-    
-    <div class="p-field" style="margin-top: 15px;">
+<p-card class="mt-3" header="Cadastrar Novo Chamado">
+  
+  <form [formGroup]="ticketForm" (ngSubmit)="salvarChamado()">
+    <div class="p-fluid p-formgrid grid">
 
-      <p-button 
-        label="Salvar"
-        icon="pi pi-save" 
-        (onClick)="salvarChamado()">
-      </p-button>
+      <!-- Campo Título com Ícone -->
+      <div class="field col-6 mt-4">
+        <label for="titulo">Título*</label>
+        <p-inputgroup>
+            <p-inputgroup-addon><i class="pi pi-bookmark"></i></p-inputgroup-addon>
+            <input pInputText id="titulo" formControlName="titulo" placeholder="Digite o título do chamado" required />
+        </p-inputgroup>
+      </div>
+
+      <!-- Campo Categoria (Dropdown dentro do Input Group) -->
+      <div class="field col-6 mt-4">
+        <label for="categoria">Categoria</label>
+        <p-inputgroup>
+            <p-inputgroup-addon>
+                <i class="pi pi-tags"></i> <!-- Ícone para categoria -->
+            </p-inputgroup-addon>
+            <p-select 
+              id="categoria" 
+              formControlName="categoria" 
+              [options]="categorias" 
+              optionLabel="label" 
+              optionValue="value"
+              placeholder="Selecione uma categoria">
+            </p-select>
+        </p-inputgroup>
+      </div>
+
+      <!-- Campo Descrição com Ícone -->
+      <div class="field col-12">
+        <label for="descricao">Descrição*</label>
+        <p-inputgroup>
+            <p-inputgroup-addon><i class="pi pi-align-left"></i></p-inputgroup-addon>
+            <textarea class="col-6" id="descricao" formControlName="descricao" rows="5" placeholder="Descreva o problema detalhadamente" required></textarea>
+        </p-inputgroup>
+      </div>
+      
+      <!-- Botão de Salvar -->
+      <div class="field col-12">
+        <p-button 
+          label="Salvar" 
+          icon="pi pi-save" 
+          type="submit">
+        </p-button>
+      </div>
       
     </div>
-  </div>
+  </form>
 </p-card>
