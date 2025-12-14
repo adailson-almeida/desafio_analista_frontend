@@ -1,17 +1,19 @@
 <p-toast></p-toast>
 
+<div *ngIf="isLoading" class="spinner-overlay">
+
+  <p-progress-spinner arialabel="loading" />
+
+</div>
+
 <div class="main-layout-container">
 
   <aside class="sidebar-area">
-
     <app-sidebar></app-sidebar>
-
   </aside>
 
   <main class="main-content-area">
-
     <router-outlet></router-outlet>
-
   </main>
 
 </div>

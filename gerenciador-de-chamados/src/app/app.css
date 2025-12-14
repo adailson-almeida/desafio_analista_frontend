@@ -36,3 +36,16 @@
 :host ::ng-deep .pi-tags {
     color: #34d399; /* Verde para o ícone de categoria */
 }
+
+.spinner-overlay {
+  position: fixed; /* Fixa na tela toda */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background-color: rgba(10, 10, 10, 0.432); /* Fundo branco semi-transparente */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center;     /* Centraliza verticalmente */
+  z-index: 9999;           /* Garante que fique acima de tudo */
+}

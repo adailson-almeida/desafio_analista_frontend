@@ -1,9 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, ChangeDetectorRef } from '@angular/core';
+import { Router, RouterOutlet, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarComponent } from './shared/components/sidebar.component';
 import { AlertComponent } from './shared/components/alert.component';
 import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +15,38 @@ import { ToastModule } from 'primeng/toast';
     ButtonModule, 
     SidebarComponent,
     AlertComponent,
-    ToastModule
+    ToastModule,
+    ProgressSpinnerModule,
+    CommonModule,
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
   standalone: true
 })
 export class AppComponent {
-  title = 'Meu projeto PrimeNG';
+  title = 'Gerenciador de Chamados';
+  isLoading = false;
+
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+
+        this.isLoading = true;
+        console.log('Navegação iniciada, isLoading:', this.isLoading);
+
+      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+        
+        
+        setTimeout(() => {
+          this.isLoading = false;
+          this.cdr.detectChanges();
+          console.log('Navegação finalizada com atraso, isLoading:', this.isLoading);
+        }, 900);    
+      }
+    });
+  }
 }
