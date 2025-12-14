@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
+import { MessageService } from 'primeng/api';
 import { 
   FormBuilder, 
   FormGroup, 
@@ -43,15 +44,16 @@ export class TicketAddComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private ticketService: TicketService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
     this.categorias = [
-      { label: 'Hardware', value: 'HARDWARE' },
-      { label: 'Software', value: 'SOFTWARE' },
-      { label: 'Rede', value: 'NETWORK' },
-      { label: 'Outro', value: 'OTHER' }
+      { label: 'Hardware', value: 'Hardware' },
+      { label: 'Software', value: 'Software' },
+      { label: 'Rede', value: 'Rede' },
+      { label: 'Outro', value: 'Outro' }
     ];
 
     this.ticketForm = this.fb.group({
@@ -62,15 +64,17 @@ export class TicketAddComponent implements OnInit {
     console.log('Componente de Adição de Chamados carregado!');
   }
 
-  salvarChamado() {
+salvarChamado() {
     if (this.ticketForm.valid) {
+      // O código de navegação está aqui
       this.ticketService.addChamado(this.ticketForm.value).subscribe(response => {
+        this.messageService.add({severity:'success', summary:'Sucesso', detail:'Chamado registrado!'});
         this.router.navigate(['/tickets/list']);
-      })
-      
+      });
     } else {
-      alert('Por favor, preencha todos os campos obrigatórios.');
+      this.messageService.add({severity:'error', summary: 'Erro', detail: 'Por favor, preencha todos os campos obrigatórios (*)!'});
     }
-  }
+}
+
 
 }
