@@ -1,5 +1,12 @@
 import { Component, ChangeDetectorRef } from '@angular/core';
-import { Router, RouterOutlet, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
+import {
+  Router,
+  RouterOutlet,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarComponent } from './shared/components/sidebar.component';
 import { AlertComponent } from './shared/components/alert.component';
@@ -9,10 +16,9 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: 
-  [
-    RouterOutlet, 
-    ButtonModule, 
+  imports: [
+    RouterOutlet,
+    ButtonModule,
     SidebarComponent,
     AlertComponent,
     ToastModule,
@@ -21,31 +27,25 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './app.html',
   styleUrl: './app.css',
-  standalone: true
+  standalone: true,
 })
 export class AppComponent {
   title = 'Gerenciador de Chamados';
   isLoading = false;
 
-  constructor(
-    private router: Router,
-    private cdr: ChangeDetectorRef
-  ) {
-
-    this.router.events.subscribe(event => {
+  constructor(private router: Router, private cdr: ChangeDetectorRef) {
+    this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
-
         this.isLoading = true;
-        console.log('Navegação iniciada, isLoading:', this.isLoading);
-
-      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
-        
-        
+      } else if (
+        event instanceof NavigationEnd ||
+        event instanceof NavigationCancel ||
+        event instanceof NavigationError
+      ) {
         setTimeout(() => {
           this.isLoading = false;
           this.cdr.detectChanges();
-          console.log('Navegação finalizada com atraso, isLoading:', this.isLoading);
-        }, 900);    
+        }, 900);
       }
     });
   }

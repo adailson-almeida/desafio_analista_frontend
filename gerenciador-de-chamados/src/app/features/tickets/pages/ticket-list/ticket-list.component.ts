@@ -6,29 +6,19 @@ import { TicketService } from '../../services/ticket.service';
 import { Chamado } from '../../models/ticket.model';
 import { Observable } from 'rxjs';
 
-
 @Component({
   selector: 'app-ticket-list',
   standalone: true,
-  imports: 
-  [
-    CommonModule, 
-    CardModule,
-    TableModule,
-    AsyncPipe
-  ],
+  imports: [CommonModule, CardModule, TableModule, AsyncPipe],
   templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.css']
+  styleUrls: ['./ticket-list.component.css'],
 })
 export class TicketListComponent implements OnInit {
-
   chamados$!: Observable<Chamado[]>;
 
-  constructor(private ticketService: TicketService) { }
+  constructor(private ticketService: TicketService) {}
 
   ngOnInit(): void {
-    
     this.chamados$ = this.ticketService.chamados$;
   }
-
 }

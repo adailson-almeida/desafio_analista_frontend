@@ -8,12 +8,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { SelectModule } from 'primeng/select';
 import { MessageService } from 'primeng/api';
-import { 
-  FormBuilder, 
-  FormGroup, 
-  Validators, 
-  ReactiveFormsModule
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TicketService } from '../../services/ticket.service';
 
@@ -29,13 +24,12 @@ import { TicketService } from '../../services/ticket.service';
     ReactiveFormsModule,
     InputGroupModule,
     InputGroupAddonModule,
-    SelectModule
+    SelectModule,
   ],
   templateUrl: './ticket-add.component.html',
-  styleUrls: ['./ticket-add.component.css']
+  styleUrls: ['./ticket-add.component.css'],
 })
 export class TicketAddComponent implements OnInit {
-
   tituloChamado: string = '';
 
   ticketForm!: FormGroup;
@@ -46,39 +40,44 @@ export class TicketAddComponent implements OnInit {
     private ticketService: TicketService,
     private router: Router,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.categorias = [
       { label: 'Hardware', value: 'Hardware' },
       { label: 'Software', value: 'Software' },
       { label: 'Rede', value: 'Rede' },
-      { label: 'Outro', value: 'Outro' }
+      { label: 'Outro', value: 'Outro' },
     ];
 
     this.ticketForm = this.fb.group({
       titulo: ['', Validators.required],
       descricao: ['', Validators.required],
-      categoria: [null, Validators.required]
+      categoria: [null, Validators.required],
     });
     console.log('Componente de Adição de Chamados carregado!');
   }
 
-salvarChamado() {
+  salvarChamado() {
     if (this.ticketForm.valid) {
-      // O código de navegação está aqui
-      this.ticketService.addChamado(this.ticketForm.value).subscribe(response => {
-        this.messageService.add({severity:'success', summary:'Sucesso', detail:'Chamado registrado!'});
+      this.ticketService.addChamado(this.ticketForm.value).subscribe((response) => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Sucesso',
+          detail: 'Chamado registrado!',
+        });
         this.router.navigate(['/tickets/list']);
       });
     } else {
-      this.messageService.add({severity:'error', summary: 'Erro', detail: 'Por favor, preencha todos os campos obrigatórios (*)!'});
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Por favor, preencha todos os campos obrigatórios (*)!',
+      });
     }
-}
+  }
 
-voltarParaLista(){
-  this.router.navigate(['/tickets/list'])
-}
-
-
+  voltarParaLista() {
+    this.router.navigate(['/tickets/list']);
+  }
 }

@@ -1,51 +1,52 @@
 .main-layout-container {
-  display: flex; /* Ativa o Flexbox para organizar os filhos (sidebar e main) lado a lado */
-  min-height: 100vh; /* Garante que o container ocupe a altura total da tela */
+  display: flex;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+  .main-layout-container {
+    flex-direction: column;
+  }
 }
 
 .sidebar-area {
-  /* Define uma largura fixa para o sidebar */
-  width: 350px; 
-  
-  /* Garante que o menu ocupe 100% da altura do sidebar */
-  height: 100%; 
+  width: 350px;
+  height: 100%;
   padding: 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .main-content-area {
-  /* O conteúdo principal ocupa o resto do espaço disponível (flex: 1) */
-  flex: 1; 
-  padding: 20px; /* Adiciona algum espaçamento ao redor do conteúdo */
-  overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
 }
 
 :host ::ng-deep .p-panelmenu {
-    width: 100%;
+  width: 100%;
 }
 
 :host ::ng-deep p-inputgroup-addon i {
-  color: #34d399; /* Use a cor que desejar, ex: Azul */
+  color: #34d399;
 }
 
-/* Se quiser cores diferentes para ícones específicos, use a classe do ícone */
 :host ::ng-deep .pi-bookmark {
-    color: #34d399; /* Laranja para o ícone de título */
+  color: #34d399;
 }
 
 :host ::ng-deep .pi-tags {
-    color: #34d399; /* Verde para o ícone de categoria */
+  color: #34d399;
 }
 
 .spinner-overlay {
-  position: fixed; /* Fixa na tela toda */
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   display: flex;
-  background-color: rgba(10, 10, 10, 0.432); /* Fundo branco semi-transparente */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center;     /* Centraliza verticalmente */
-  z-index: 9999;           /* Garante que fique acima de tudo */
+  background-color: rgba(10, 10, 10, 0.432);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }

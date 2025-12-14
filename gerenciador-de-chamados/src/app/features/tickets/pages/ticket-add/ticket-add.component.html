@@ -1,6 +1,7 @@
 <p-card class="mt-3" header="Cadastrar Novo Chamado">
   
   <form [formGroup]="ticketForm" (ngSubmit)="salvarChamado()">
+
     <div class="p-fluid p-formgrid grid">
 
       <div class="field col-6 mt-4">
@@ -31,11 +32,14 @@
       </div>
 
       <div class="field col-12">
+
         <label for="descricao">Descrição*</label>
+
         <p-inputgroup>
             <p-inputgroup-addon><i class="pi pi-align-left"></i></p-inputgroup-addon>
             <textarea class="col-6" id="descricao" formControlName="descricao" rows="5" placeholder="Descreva o problema detalhadamente" required></textarea>
         </p-inputgroup>
+        
       </div>
 
       <div class="field col-12 flex gap-3">
@@ -54,9 +58,10 @@
           (onClick)="salvarChamado()"
           type="button">
         </p-button>
-        
+
       </div>
       
     </div>
+
   </form>
 </p-card>
