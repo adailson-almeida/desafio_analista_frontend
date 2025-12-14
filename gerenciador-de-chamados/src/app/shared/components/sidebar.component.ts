@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
                 label: 'Home',
                 icon: 'pi pi-warehouse',
                 iconStyle: {'color': '#34d399'},
-                routerLink: ['/dashboard']
+                routerLink: ['/tickets/list']
             },
             {
                 label: 'Gerenciador de Chamados',
@@ -33,7 +33,7 @@ export class SidebarComponent implements OnInit {
                     },
                     {
                         label: 'Novo Chamado',
-                        icon: 'pi pi-send',
+                        icon: 'pi pi-plus',
                         iconStyle: {'color': '#34d399'},
                         routerLink: ['/tickets/add']
                     }

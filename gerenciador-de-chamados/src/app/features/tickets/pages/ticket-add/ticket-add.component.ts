@@ -76,5 +76,9 @@ salvarChamado() {
     }
 }
 
+voltarParaLista(){
+  this.router.navigate(['/tickets/list'])
+}
+
 
 }
